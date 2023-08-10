@@ -69,10 +69,9 @@ curl -X 'POST' \
 ```
 ### In webpage 
 `http://127.0.0.1:8000/docs`
-![Alt text](images/webpage_outlook.png) 
 - Insert image url to `string`, then hit `Excecute`
 
-![Alt text](images/webpage_testing.png)
+<img src="images/webpage_outlook.png" alt="drawing" width="500"/>  <img src="images/webpage_testing.png" alt="drawing" width="500"/>
 
 ## Testing the End points (TBC)
 
