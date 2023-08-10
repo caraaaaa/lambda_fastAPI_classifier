@@ -1,0 +1,6 @@
+tests/
+resources/
+__pycache__/
+*/__pycache__/
+.pytest_cache/
+.gitignore_2

@@ -1,0 +1,16 @@
+name: FastAPI_classifier
+channels:
+  - conda-forge
+  - pytorch
+dependencies:
+  - fastapi
+  - uvicorn
+  - numpy
+  - pydantic
+  - Pillow
+  - tensorflow
+  - pytorch
+  - torchvision
+  - locust
+  - tensorflow-hub
+  - pytest
