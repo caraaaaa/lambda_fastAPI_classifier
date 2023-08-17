@@ -11,3 +11,4 @@ tensorflow
 locust
 tensorflow_hub
 pytest
+httpx

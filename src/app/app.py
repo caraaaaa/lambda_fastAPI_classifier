@@ -1,7 +1,3 @@
-import sys
-import os
-sys.path.insert(0, os.getcwd()) # for the "src" modules
-
 from fastapi import FastAPI, HTTPException
 from src.pred.image_classifier import *
 from fastapi.middleware.cors import CORSMiddleware
@@ -16,6 +12,8 @@ origins = [
     "http://127.0.0.1:8089/",
 ]
 
+# To allow cross-origin requests
+# More at https://fastapi.tiangolo.com/tutorial/cors/
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,

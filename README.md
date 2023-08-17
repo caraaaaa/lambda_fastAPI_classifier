@@ -1,6 +1,12 @@
 # Serving ML Model with FastAPI
 
-### Models
+### This repo will demostrate how to : 
+- Serve ML model using FastAPI
+- Isolate environment for ML application using Conda
+- Containarize ML application using Docker/ docker-compose
+- Conduct performance test using Locust
+
+## Models
 - Tensorflow MobileNet_V2 (Pretrained)
 - Pytorch AlexNet (Pretrained)
 
@@ -30,26 +36,26 @@ fastAPI_object_classifier
 │   │   └── utilities.py
 │   └── main.py
 └── tests
-    ├── performance-tests
-    ├── unit-tests
+    ├── performance_test.py
+    ├── unit_test.py
     └── helpers.py
 
 ```
 
 ## Running the Code
 * Server should be running at `http://127.0.0.1:8000/docs`
-### With Conda
+#### With Conda
 ```bash
 conda env create -f env/environment.yml
 conda activate FastAPI_classifier
 python3 src/main.py
 ```
-### With Docker
+#### With Docker
 ```bash
 docker build -f env/Dockerfile -t fastapiimage .
 docker run --name fastapicontainer -p 8000:8000 fastapiimage
 ```
-### With Docker-compose
+#### With Docker-compose
 ```bash
 docker-compose -f env/docker-compose.yml up --build
 ```
@@ -59,7 +65,7 @@ docker-compose down
 ```
 
 ## Testing Result
-### In terminal
+#### In terminal
 ```
 curl -X 'POST' \
   'http://127.0.0.1:8000/predict/torch_model/' \
@@ -67,26 +73,23 @@ curl -X 'POST' \
   -H 'Content-Type: application/json' \
   -d '{"img_url": "<image_url>"}'
 ```
-### In webpage 
+#### In webpage 
 `http://127.0.0.1:8000/docs`
 - Insert image url to `string`, then hit `Excecute`
 
 <img src="images/webpage_outlook.png" alt="drawing" width="500"/>  <img src="images/webpage_testing.png" alt="drawing" width="500"/>
 
-## Testing the End points (TBC)
-
-### Simple Testing
-```bash
-python3 test-api.py
-```
-
-### Running Unit Tests
+## Performance Test for the End-point(s)
+#### Running Unit Tests
 ```bash
 pytest
 ```
 
-### Running the performance Tests using Locust
+#### Running the performance Tests using Locust
 ```bash
-locust -f tests/performance_test.py
+locust -f tests/locust.py
 ```
-* Tests should appear at `http://127.0.0.1:8089/`
+* Testing monitor UI can be accessed at `http://127.0.0.1:8089/`
+
+* Set the host to be the FastAPI server URL (in this case `http://127.0.0.1:8000`)
+<img src="images/locust_UI_2.png" alt="drawing" width="500"/>

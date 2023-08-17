@@ -7,7 +7,7 @@ COPY ./env/requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 COPY ./src ./src/
-COPY ./src/main.py ./main.py
-COPY ./src/app/app.py ./app.py
+COPY ./src/main.py ./src/main.py
+COPY ./src/app/app.py ./src/app/app.py
 
-CMD ["python", "main.py"]
+CMD ["python", "/src/main.py"]
