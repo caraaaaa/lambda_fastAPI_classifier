@@ -87,7 +87,7 @@ pytest
 
 #### Running the performance Tests using Locust
 ```bash
-locust -f tests/locust.py
+locust -f tests/performance_test.py
 ```
 * Testing monitor UI can be accessed at `http://127.0.0.1:8089/`
 

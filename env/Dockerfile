@@ -10,4 +10,4 @@ COPY ./src ./src/
 COPY ./src/main.py ./src/main.py
 COPY ./src/app/app.py ./src/app/app.py
 
-CMD ["python", "/src/main.py"]
+CMD ["python", "./src/main.py"]
