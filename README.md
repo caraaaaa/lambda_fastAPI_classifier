@@ -1,8 +1,8 @@
 # Serving ML Model with FastAPI
 
-### This repo will demostrate how to : 
+### This repo will demostrate how to
 - Serve ML model using FastAPI
-- Isolate environment for ML application using Conda
+- Buuild isolated environment for ML application using Conda
 - Containarize ML application using Docker/ docker-compose
 - Conduct performance test using Locust
 
@@ -61,7 +61,7 @@ docker-compose -f env/docker-compose.yml up --build
 ```
 - To stop Docker-compose (inside the project directory)
 ```bash
-docker-compose down
+docker-compose -f env/docker-compose.yml down
 ```
 
 ## Testing Result
