@@ -2,17 +2,20 @@
 
 ### Model Deployment
 - Serve ML model using FastAPI
-- Containarize ML application using Docker/ docker-compose
+- Containerize ML application using Docker/ docker-compose
 - Conduct performance test using Locust
 
 ## DEMO
 Testing image
+
 ![](https://www.southernliving.com/thmb/Rz-dYEhwq_82C5_Y9GLH2ZlEoYw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gettyimages-837898820-1-4deae142d4d0403dbb6cb542bfc56934.jpg)
 
 Inference UI
+
 ![](images/image_classifier_demo.gif)
 
-Performace test with Lucust
+Performance test with Lucust
+
 ![](images/performance_test_demo.gif)
 
 
@@ -38,7 +41,7 @@ docker-compose -f env/docker-compose.yml down
 ```
 
 ## Inference
-#### In terminal
+#### In Terminal
 ```
 curl -X 'POST' \
   'http://127.0.0.1:8000/predict/torch_model/' \
@@ -61,7 +64,7 @@ pytest
 locust -f tests/performance_test.py
 ```
 * Testing monitor UI can be accessed at `http://127.0.0.1:8089/`
-* In this case, set the host to be `http://127.0.0.1:8000`to test
+* In this case, set the host to `http://127.0.0.1:8000` to test
 
 
 ## Models Used
