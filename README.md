@@ -1,49 +1,22 @@
 # Serving ML Model with FastAPI
 
-### This repo will demostrate how to
+### Model Deployment
 - Serve ML model using FastAPI
-- Buuild isolated environment for ML application using Conda
 - Containarize ML application using Docker/ docker-compose
 - Conduct performance test using Locust
 
-## Models
-- Tensorflow MobileNet_V2 (Pretrained)
-- Pytorch AlexNet (Pretrained)
+## DEMO
+Testing image
+![](https://www.southernliving.com/thmb/Rz-dYEhwq_82C5_Y9GLH2ZlEoYw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/gettyimages-837898820-1-4deae142d4d0403dbb6cb542bfc56934.jpg)
 
-## Pre-requisites
-* Python (3.6+)
+Inference UI
+![](images/image_classifier_demo.gif)
 
-## Folder structure
-```bash
-fastAPI_object_classifier
-├── env
-│   ├── Dockerfile
-│   ├── docker-compose.yml
-│   ├── environment.yml
-│   └── requirements.txt
-├── src
-│   ├── app
-│   │   └── app.py
-│   ├── pred
-│   │   ├── models
-│   │   │   ├── tf_pred.py
-│   │   │   └── torch_pred.py
-│   │   └── image_classifier.py
-│   ├── schemas
-│   │   └── image_schema.py
-│   ├── utils
-│   │   ├── test_images.py
-│   │   └── utilities.py
-│   └── main.py
-└── tests
-    ├── performance_test.py
-    ├── unit_test.py
-    └── helpers.py
+Performace test with Lucust
+![](images/performance_test_demo.gif)
 
-```
 
-## Running the Code
-* Server should be running at `http://127.0.0.1:8000/docs`
+## Quick Start
 #### With Conda
 ```bash
 conda env create -f env/environment.yml
@@ -64,7 +37,7 @@ docker-compose -f env/docker-compose.yml up --build
 docker-compose -f env/docker-compose.yml down
 ```
 
-## Testing Result
+## Inference
 #### In terminal
 ```
 curl -X 'POST' \
@@ -74,10 +47,8 @@ curl -X 'POST' \
   -d '{"img_url": "<image_url>"}'
 ```
 #### In webpage 
-`http://127.0.0.1:8000/docs`
-- Insert image url to `string`, then hit `Excecute`
+Inference UI can be accessed at `http://127.0.0.1:8000/docs`
 
-<img src="images/webpage_outlook.png" alt="drawing" width="500"/>  <img src="images/webpage_testing.png" alt="drawing" width="500"/>
 
 ## Performance Test for the End-point(s)
 #### Running Unit Tests
@@ -90,6 +61,9 @@ pytest
 locust -f tests/performance_test.py
 ```
 * Testing monitor UI can be accessed at `http://127.0.0.1:8089/`
+* In this case, set the host to be `http://127.0.0.1:8000`to test
 
-* Set the host to be the FastAPI server URL (in this case `http://127.0.0.1:8000`)
-<img src="images/locust_UI_2.png" alt="drawing" width="500"/>
+
+## Models Used
+- Pretrained MobileNet_V2 (Tensorflow)
+- Pretrained AlexNet (Pytorch)
