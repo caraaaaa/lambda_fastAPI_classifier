@@ -3,7 +3,7 @@
 ### Model Deployment
 - Serve ML model using FastAPI
 - Containerize ML application using Docker/ docker-compose
-- Deploy ML application to AWS lambda using Docker
+- Publish Docker image to ECR and deploy the application to AWS lambda using Docker
 - Conduct performance test using Locust
 
 ## DEMO
@@ -37,13 +37,17 @@ docker-compose -f env/docker-compose.yml down
 ```
 
 ## Deployment to AWS Lambda
-- Publish image to ECR
+- Create a Docker image
+```bash
+docker build -f env/Dockerfile_aws -t fastapiimage_aws .
 ```
+- Publish image to ECR
+```bash
 aws ecr create-repository --repository-name {repo_name}
 aws ecr get-login-password --region {region} | docker login\
     --username AWS \
     --password-stdin {aws_account_id}.dkr.ecr.{region}.amazonaws.com
-docker tag {docker image} {repositoryUri}:{Tag}
+docker tag fastapiimage_aws {repositoryUri}:{Tag}
 docker push {repositoryUri}:{Tag}
 ```
 - Create a lambda function using the ECR image
