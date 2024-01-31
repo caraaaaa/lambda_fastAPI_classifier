@@ -1,8 +1,9 @@
-# Serving ML Model with FastAPI
+# Deploy ML Model to AWS lambda using Docker and FastAPI
 
 ### Model Deployment
 - Serve ML model using FastAPI
 - Containerize ML application using Docker/ docker-compose
+- Deploy ML application to AWS lambda using Docker
 - Conduct performance test using Locust
 
 ## DEMO
@@ -14,7 +15,7 @@
 ![](images/performance_test_demo.gif)
 
 
-## Quick Start
+## Quick Start (run locally)
 #### With Conda
 ```bash
 conda env create -f env/environment.yml
@@ -35,7 +36,24 @@ docker-compose -f env/docker-compose.yml up --build
 docker-compose -f env/docker-compose.yml down
 ```
 
-## Inference
+## Deployment to AWS Lambda
+- Publish image to ECR
+```
+aws ecr create-repository --repository-name {repo_name}
+aws ecr get-login-password --region {region} | docker login\
+    --username AWS \
+    --password-stdin {aws_account_id}.dkr.ecr.{region}.amazonaws.com
+docker tag {docker image} {repositoryUri}:{Tag}
+docker push {repositoryUri}:{Tag}
+```
+- Create a lambda function using the ECR image
+  - Change configuration (needed for model initialization)
+    - timeout -> 30s
+    - memory -> 1024MB
+- Create Lambda URL and Test the FastAPI app
+  - Configuration > Function URL > Create function URL > Auth type: NONE > Additional settings:CORS enabled > Save
+
+## Inference 
 #### In Terminal
 ```
 curl -X 'POST' \
@@ -45,7 +63,7 @@ curl -X 'POST' \
   -d '{"img_url": "<image_url>"}'
 ```
 #### In webpage 
-Inference UI can be accessed at `http://127.0.0.1:8000/docs`
+Inference UI can be accessed at `http://127.0.0.1:8000/docs` if running locally
 
 
 ## Performance Test for the End-point(s)
@@ -59,7 +77,7 @@ pytest
 locust -f tests/performance_test.py
 ```
 * Testing monitor UI can be accessed at `http://127.0.0.1:8089/`
-* In this case, set the host to `http://127.0.0.1:8000` to test
+* If running locally, set the host to `http://127.0.0.1:8000` to test
 
 
 ## Models Used

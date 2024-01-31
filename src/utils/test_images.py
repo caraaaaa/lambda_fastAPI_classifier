@@ -12,10 +12,6 @@ image_links = [
         "name": "hamster.jpg"
     },
     {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/TROPICS_Rocket_Launch_%28KSC-20230507-PH-RLS01_0002-reupload%29_%28cropped%29.jpg/440px-TROPICS_Rocket_Launch_%28KSC-20230507-PH-RLS01_0002-reupload%29_%28cropped%29.jpg",
-        "name": "rocket.jpg"
-    },
-    {
         "url": "https://i.ebayimg.com/images/g/vlIAAOSwikBcR0nA/s-l1200.webp",
         "name": "teddy.jpg"
     },
