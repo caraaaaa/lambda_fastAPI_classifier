@@ -3,8 +3,6 @@ uvicorn==0.17.6
 wget==3.2
 numpy
 pydantic==1.9.1
-torch
-torchvision
 Pillow==9.1.1
 flask==2.1.2
 tensorflow
@@ -12,3 +10,6 @@ locust
 tensorflow_hub
 pytest
 httpx
+mangum
+torch
+torchvision

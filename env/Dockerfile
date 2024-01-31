@@ -7,7 +7,6 @@ COPY ./env/requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 COPY ./src ./src/
-COPY ./src/main.py ./src/main.py
-COPY ./src/app/app.py ./src/app/app.py
+RUN python ./src/pred/models/torch_pred.py
 
 CMD ["python", "./src/main.py"]

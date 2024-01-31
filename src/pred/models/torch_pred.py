@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.insert(1, os.getcwd())
+
 import torch
 from torchvision import models
 from torchvision import transforms
@@ -23,14 +27,14 @@ def torch_preprocess(img):
     except Exception as e:
         print(e)
 
-
-model = None
-
-
 def get_model():
-    global model
-    if model is None:
-        model = models.alexnet(pretrained=True)
+    if not os.path.exists(SAVE_LOCATION + 'alexnet.pth'):
+        dir_check(SAVE_LOCATION)
+        model = models.alexnet(weights='IMAGENET1K_V1')
+        torch.save(model.state_dict(), SAVE_LOCATION + 'alexnet.pth')
+    else:
+        model = models.alexnet()
+        model.load_state_dict(torch.load(SAVE_LOCATION + 'alexnet.pth'))
     return model
 
 
@@ -70,3 +74,7 @@ def torch_predict(input_batch, model=None):
 
     _, indices = torch.sort(output, descending=True)
     return [(labels[idx], percentage[idx].item()) for idx in indices[0][:5]]
+
+if __name__ == '__main__':
+    get_model()
+    get_labels()
